@@ -1,94 +1,130 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
 import { idArg, makeSchema, objectType, stringArg, subscriptionField, intArg } from 'nexus'
+import { transformSchemaFederation } from 'graphql-transform-federation';
+
+const excludedFields = new Set([
+    "incoming_token_hash",
+    "salt",
+    "outgoing_token",
+    "hashed_secret",
+    "outgoing_secret",
+    "access_key"
+])
 
 const bridgeTypes = objectType({
     name: 'bridge_types',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const externalInitiators = objectType({
     name: 'external_initiators',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const heads = objectType({
     name: 'heads',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const initiators = objectType({
     name: 'initiators',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const jobRuns = objectType({
     name: 'job_runs',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const jobSpecs = objectType({
     name: 'job_specs',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const runRequests = objectType({
     name: 'run_requests',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const runResults = objectType({
     name: 'run_results',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const serviceAgreements = objectType({
     name: 'service_agreements',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const taskRuns = objectType({
     name: 'task_runs',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const taskSpecs = objectType({
     name: 'task_specs',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const txAttempts = objectType({
     name: 'tx_attempts',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
 const txes = objectType({
     name: 'txes',
     definition(t) {
-        Object.values(t.model).map((field: any) => { field() })
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
     }
 })
 
@@ -120,7 +156,7 @@ const Mutation = objectType({
 })
 */
 
-export const schema = makeSchema({
+const schema = makeSchema({
     types: [
         Query,
         bridgeTypes,
@@ -155,3 +191,11 @@ export const schema = makeSchema({
         ],
     },
 })
+
+const federatedSchema = transformSchemaFederation(schema, {
+    Query: {
+        extend: true,
+    }
+})
+
+export default federatedSchema;

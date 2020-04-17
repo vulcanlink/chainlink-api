@@ -1,8 +1,10 @@
 dependencies:
+  '@apollo/federation': 0.14.1_graphql@14.6.0
   '@prisma/client': 2.0.0-beta.2_@prisma+cli@2.0.0-beta.2
   '@types/node-fetch': 2.5.6
   apollo-server: 2.12.0_graphql@14.6.0
   graphql: 14.6.0
+  graphql-transform-federation: 2.1.0_e7592f4f8d477a35ea755d84963ee3d5
   nexus: 0.12.0_graphql@14.6.0
   nexus-prisma: 0.10.0_2116536122f9e92d99f5458366b81a0e
 devDependencies:
@@ -13,6 +15,20 @@ devDependencies:
   typescript: 3.8.3
 lockfileVersion: 5.1
 packages:
+  /@apollo/federation/0.14.1_graphql@14.6.0:
+    dependencies:
+      apollo-graphql: 0.4.1_graphql@14.6.0
+      apollo-server-env: 2.4.3
+      core-js: 3.6.5
+      graphql: 14.6.0
+      lodash.xorby: 4.7.0
+    dev: false
+    engines:
+      node: '>=8'
+    peerDependencies:
+      graphql: ^14.0.2 || ^15.0.0
+    resolution:
+      integrity: sha512-QuX2O3xO6mcTZdqttxHaMKWgq1v0nYRiDLe4k7DwAxVtb9nF8lsJDlup4Zicx3LBYhBCGQvumrYILuF/Amn6WQ==
   /@apollo/protobufjs/1.0.3:
     dependencies:
       '@protobufjs/aspromise': 1.1.2
@@ -976,6 +992,16 @@ packages:
       graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
     resolution:
       integrity: sha512-MW+ioleBrwhRjalKjYaLQbr+920pHBgy9vM/n47sswtns8+96sRn5M/G+J1eu7IMeKWiN/9p6tmwCHU7552VJg==
+  /graphql-transform-federation/2.1.0_e7592f4f8d477a35ea755d84963ee3d5:
+    dependencies:
+      '@apollo/federation': 0.14.1_graphql@14.6.0
+      graphql: 14.6.0
+    dev: false
+    peerDependencies:
+      '@apollo/federation': ^0.9.4
+      graphql: ^14.5.7
+    resolution:
+      integrity: sha512-mpTfWKLBJXr/b6OmwWEa4M5vA6OdNGFszEZMHUwgd0eD0/khDQK+aaks0Ufl/bRd01K1h9N+n1pf8DQcXXPjGg==
   /graphql-upload/8.1.0_graphql@14.6.0:
     dependencies:
       busboy: 0.3.1
@@ -1158,6 +1184,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
+  /lodash.xorby/4.7.0:
+    dev: false
+    resolution:
+      integrity: sha1-nBmm+fBjputT3QPBtocXmYAUY9c=
   /loglevel/1.6.8:
     dev: false
     engines:
@@ -1926,12 +1956,14 @@ packages:
     resolution:
       integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 specifiers:
+  '@apollo/federation': ^0.14.1
   '@prisma/cli': ^2.0.0-beta.2
   '@prisma/client': ^2.0.0-beta.2
   '@types/node': ^13.7.7
   '@types/node-fetch': ^2.5.5
   apollo-server: ^2.11.0
   graphql: ^14.6.0
+  graphql-transform-federation: ^2.1.0
   nexus: ^0.12.0-rc.13
   nexus-prisma: ^0.10.0
   ts-node: ^8.6.2
