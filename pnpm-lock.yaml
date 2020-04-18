@@ -6,7 +6,7 @@ dependencies:
   graphql: 14.6.0
   graphql-transform-federation: 2.1.0_e7592f4f8d477a35ea755d84963ee3d5
   nexus: 0.12.0_graphql@14.6.0
-  nexus-prisma: 0.10.0_2116536122f9e92d99f5458366b81a0e
+  nexus-prisma: 0.11.1_2116536122f9e92d99f5458366b81a0e
 devDependencies:
   '@prisma/cli': 2.0.0-beta.2
   '@types/node': 13.11.1
@@ -1308,7 +1308,7 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
-  /nexus-prisma/0.10.0_2116536122f9e92d99f5458366b81a0e:
+  /nexus-prisma/0.11.1_2116536122f9e92d99f5458366b81a0e:
     dependencies:
       '@prisma/client': 2.0.0-beta.2_@prisma+cli@2.0.0-beta.2
       camelcase: 5.3.1
@@ -1318,11 +1318,11 @@ packages:
       pluralize: 8.0.0
     dev: false
     peerDependencies:
-      '@prisma/client': ^2.0.0-preview022
+      '@prisma/client': 2.0.0-preview023
       graphql: ^14.5.0
       nexus: ^0.12.0-rc.13
     resolution:
-      integrity: sha512-b2oX0dNt/yOtMChwIYEA8QWTeT7UjbqCtzVJptmkQLWkpum/JBlcCEuncuE7fNbbK81AhL7py6C0vVJGnYdY7Q==
+      integrity: sha512-ulumiVouJivOkrvixXuZai0iZSfWf3Dw7hEVqQ94yL53HvLXdnnnO0e77by/aFq6s+bHAThn1n1JS5H0YC8Kmg==
   /nexus/0.12.0_graphql@14.6.0:
     dependencies:
       graphql: 14.6.0
@@ -1965,7 +1965,7 @@ specifiers:
   graphql: ^14.6.0
   graphql-transform-federation: ^2.1.0
   nexus: ^0.12.0-rc.13
-  nexus-prisma: ^0.10.0
+  nexus-prisma: ^0.11.0
   ts-node: ^8.6.2
   ts-node-dev: ^1.0.0-pre.44
   typescript: ^3.8.3

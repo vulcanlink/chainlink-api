@@ -11,8 +11,8 @@ const excludedFields = new Set([
     "access_key"
 ])
 
-const bridgeTypes = objectType({
-    name: 'bridge_types',
+const BridgeType = objectType({
+    name: 'BridgeType',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -20,8 +20,8 @@ const bridgeTypes = objectType({
     }
 })
 
-const externalInitiators = objectType({
-    name: 'external_initiators',
+const ExternalInitiator = objectType({
+    name: 'ExternalInitiator',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -29,8 +29,8 @@ const externalInitiators = objectType({
     }
 })
 
-const heads = objectType({
-    name: 'heads',
+const Head = objectType({
+    name: 'Head',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -38,8 +38,8 @@ const heads = objectType({
     }
 })
 
-const initiators = objectType({
-    name: 'initiators',
+const Initiator = objectType({
+    name: 'Initiator',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -47,8 +47,8 @@ const initiators = objectType({
     }
 })
 
-const jobRuns = objectType({
-    name: 'job_runs',
+const JobRun = objectType({
+    name: 'JobRun',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -56,8 +56,8 @@ const jobRuns = objectType({
     }
 })
 
-const jobSpecs = objectType({
-    name: 'job_specs',
+const JobSpec = objectType({
+    name: 'JobSpec',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -65,8 +65,8 @@ const jobSpecs = objectType({
     }
 })
 
-const runRequests = objectType({
-    name: 'run_requests',
+const RunRequest = objectType({
+    name: 'RunRequest',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -74,8 +74,8 @@ const runRequests = objectType({
     }
 })
 
-const runResults = objectType({
-    name: 'run_results',
+const RunResult = objectType({
+    name: 'RunResult',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -83,8 +83,8 @@ const runResults = objectType({
     }
 })
 
-const serviceAgreements = objectType({
-    name: 'service_agreements',
+const ServiceAgreement = objectType({
+    name: 'ServiceAgreement',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -92,8 +92,8 @@ const serviceAgreements = objectType({
     }
 })
 
-const taskRuns = objectType({
-    name: 'task_runs',
+const TaskRun = objectType({
+    name: 'TaskRun',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -101,8 +101,8 @@ const taskRuns = objectType({
     }
 })
 
-const taskSpecs = objectType({
-    name: 'task_specs',
+const TaskSpec = objectType({
+    name: 'TaskSpec',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -110,8 +110,8 @@ const taskSpecs = objectType({
     }
 })
 
-const txAttempts = objectType({
-    name: 'tx_attempts',
+const TxAttempt = objectType({
+    name: 'TxAttempt',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -119,8 +119,17 @@ const txAttempts = objectType({
     }
 })
 
-const txes = objectType({
-    name: 'txes',
+const Tx = objectType({
+    name: 'Tx',
+    definition(t) {
+        Object.entries(t.model).map(([name, field]: any) => {
+            if (!excludedFields.has(name)) field()
+        })
+    }
+})
+
+const Configuration = objectType({
+    name: 'Configuration',
     definition(t) {
         Object.entries(t.model).map(([name, field]: any) => {
             if (!excludedFields.has(name)) field()
@@ -131,48 +140,60 @@ const txes = objectType({
 const Query = objectType({
     name: 'Query',
     definition(t) {
+        t.crud.bridgeType();
         t.crud.bridgeTypes();
+        t.crud.externalInitiator();
         t.crud.externalInitiators();
+        t.crud.head();
         t.crud.heads();
+        t.crud.initiator();
         t.crud.initiators();
+        t.crud.jobRun();
         t.crud.jobRuns();
+        t.crud.jobSpec();
         t.crud.jobSpecs();
+        t.crud.runRequest();
         t.crud.runRequests();
+        t.crud.runResult();
         t.crud.runResults();
+        t.crud.serviceAgreement();
         t.crud.serviceAgreements();
+        t.crud.taskRun();
         t.crud.taskRuns();
+        t.crud.taskSpec();
         t.crud.taskSpecs();
+        t.crud.txAttempt();
         t.crud.txAttempts();
+        t.crud.tx();
         t.crud.txes();
+        t.crud.configuration();
+        t.crud.configurations();
     },
 })
 
-/*
-const Mutation = objectType({
-    name: 'Mutation',
-    definition(t) {
-        //console.debug(t.crud)
-    },
-})
-*/
 
 const schema = makeSchema({
     types: [
         Query,
-        bridgeTypes,
-        externalInitiators,
-        heads,
-        initiators,
-        jobRuns,
-        jobSpecs,
-        runRequests,
-        runResults,
-        serviceAgreements,
-        taskRuns,
-        taskSpecs,
-        txAttempts,
-        txes],
-    plugins: [nexusPrismaPlugin()],
+        Configuration,
+        BridgeType,
+        ExternalInitiator,
+        Head,
+        Initiator,
+        JobRun,
+        JobSpec,
+        RunRequest,
+        RunResult,
+        ServiceAgreement,
+        TaskRun,
+        TaskSpec,
+        TxAttempt,
+        Tx],
+    plugins: [nexusPrismaPlugin({
+        outputs: {
+            typegen: __dirname + '/generated/nexus-prisma.ts',
+        }
+    })],
     outputs: {
         schema: __dirname + '/../schema.graphql',
         typegen: __dirname + '/generated/nexus.ts',
