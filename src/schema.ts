@@ -1,6 +1,7 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { idArg, makeSchema, objectType, stringArg, subscriptionField, intArg } from 'nexus'
+import { idArg, makeSchema, objectType, interfaceType, stringArg, subscriptionField, intArg } from 'nexus'
 import { transformSchemaFederation } from 'graphql-transform-federation';
+import { delegateToSchema } from 'graphql-tools';
 
 const excludedFields = new Set([
     "incoming_token_hash",
@@ -10,6 +11,16 @@ const excludedFields = new Set([
     "outgoing_secret",
     "access_key"
 ])
+
+/*
+const Node = interfaceType({
+    name: 'Node',
+    definition(t) {
+        //t.id('id', o => o.id)
+        t.resolveType(() => null)
+    },
+})
+*/
 
 const BridgeType = objectType({
     name: 'BridgeType',
@@ -216,7 +227,13 @@ const schema = makeSchema({
 const federatedSchema = transformSchemaFederation(schema, {
     Query: {
         extend: true,
-    }
+    },
+    JobSpec: {
+        keyFields: ['id'],
+        async resolveReference({ id }: any, { prisma }, info) {
+            return await prisma.jobSpec.findOne({ where: { id } })
+        }
+    },
 })
 
 export default federatedSchema;
