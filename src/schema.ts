@@ -12,16 +12,6 @@ const excludedFields = new Set([
     "access_key"
 ])
 
-/*
-const Node = interfaceType({
-    name: 'Node',
-    definition(t) {
-        //t.id('id', o => o.id)
-        t.resolveType(() => null)
-    },
-})
-*/
-
 const BridgeType = objectType({
     name: 'BridgeType',
     definition(t) {
@@ -230,6 +220,7 @@ const federatedSchema = transformSchemaFederation(schema, {
     },
     JobSpec: {
         keyFields: ['id'],
+        //@ts-ignore
         async resolveReference({ id }: any, { prisma }, info) {
             return await prisma.jobSpec.findOne({ where: { id } })
         }
